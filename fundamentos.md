@@ -14,7 +14,8 @@
 ### Operadores en PHP
 - [x] [Operadores Logicos](#operadores-logicos)
 - [x] [Operadores aritméticos](#operadores-aritméticos)
-
+- [x] [Operadores relacionales](#operadores-relacionales)
+- [x] [Otros operadores](#otros-operadores)
 
 ### Instalacion
 
@@ -306,10 +307,148 @@ $var_b = 6;
 echo +$var_a;
 #🙃Out: 5
 
-echo $var_a ** $var_b;
-#🙃Out: 15625
+echo "A EXP B es: " . ($var_a ** $var_b);
+#🙃Out: A EXP B es: 15625
 
 echo $var_b % $var_a;
 #🙃Out: 1
 ```
+
+### Operadores relacionales
+---
+```php
+<?php
+#Declaracion de variables en PHP
+$var_a = 5.5;
+$var_b = "5.5";
+$var_c = 2;
+$var_d = 10;
+
+#Operador de igualdad
+var_dump($var_a == $var_b);
+#Out: 🙃 bool(true)
+
+/*El operador identico arroja false
+debido a que var_b es de tipo str
+*/
+var_dump($var_a === $var_b);
+#Out: 🙃 bool(false)
+
+/*Operador de diferente
+En este caso no importa el tipo
+*/
+var_dump($var_a != $var_b);
+#Out: 🙃 bool(false)
+
+/*Operador de no identico
+En este caso si importa el tipo
+*/
+var_dump($var_a !== $var_b);
+#Out: 🙃 bool(true)
+
+#Otros Basicos
+var_dump($var_a < $var_d); #bool(true)
+var_dump($var_a > $var_d); #boo(false)
+var_dump($var_a <= $var_d); #bool(true)
+var_dump($var_a >= $var_d); #boo(false)
+
+#Operador de Nave espacial <=>
+#Menor-Mayor
+echo $var_a <=> $var_d;
+#Out: 🙃 -1
+
+#Mayor-Menor
+echo $var_d <=> $var_a;
+#Out: 🙃 1
+
+#Iguales
+echo $var_a <=> $var_b;
+#Out: 🙃 0
+
+/*Operador de fusion de nulo
+Si la "var_e" no esta definida entonces
+se usa "var_b" en vez de arrojar error.
+*/
+echo $var_e ?? $var_b;
+#Out: 🙃 5.5
+```
+
+### Otros operadores
+
+```php
+<?php
+/*Operador de asignacion "="
+PHP primero resuelve la asignacion
+incluso si hay una doble igualdad
+*/
+$age_a = ($age_b = 18) + 10;
+
+echo $age_a;
+echo $age_b;
+#🙃Out: 28,18
+
+/*Operador de incremento*/
+$contador = 1;
+$contador = $contador + 10;
+#$contador += 10;
+#$contador ++; Solo incrementa en "1"
+
+var_dump($contador); 
+#🙃Out:int(11)
+
+/*Operador de decremento*/
+$contador = 1;
+$contador = $contador - 10;
+#$contador -= 10;
+#$contador --; Solo decrementa en "1"
+
+var_dump($contador); 
+#🙃Out:int(-9)
+
+/*Operador de concatenacion ".", ".="*/
+$nombre = "Nicholas";
+$nombre = $nombre . " Weir";
+#$nombre .=" Weir";
+
+var_dump($nombre);
+#🙃Out: "Nicholas Weir"
+```
+
+### Precedencia de operadores
+---
+Nos indica que ocurre primero y que despues. PHP tiene una [tabla](https://www.php.net/manual/es/language.operators.precedence.php) de precedencia la cual indica para cada operacion si es de izquierda o de derecha. Basicamente de **izquierda** quiere decir que primero se signa y luego se resulve la operacion:
+
+```php
+#Usaremos el operador "and" el cual es de precedencia izquierda.
+$michis_4_patas = true;
+$michis_leen = false;
+$resultado = $michis_4_patas and $michis_leen;
+
+#PHP asigna solo $resultado = $michis_4_patas
+echo $resultado; #🙃Out: true
+
+/*Para operar y luego asignar sin importar la 
+presedencia usamos parentesis "()" para forzar 
+la operacion sobre la asignacion.
+*/
+
+$resultado = ($michis_4_patas and $michis_leen;
+echo $resultado; #🙃Out: false
+```
+Aqui hay otro ejemplo que se podria resolver usando **()** o colocando el operador antes de la variable como el caso de **++**.
+
+```php
+<?php
+
+/*En este caso primero asigna "counter" a
+"n_counter" y despues incrementa counter
+*/
+$counter = 0;
+$n_counter = $counter++;
+#n_counter = ++$counter;
+
+var_dump($n_counter , $counter);
+#🙃Out: int(0),int(1)
+```
+
 
