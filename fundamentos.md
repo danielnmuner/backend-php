@@ -1,6 +1,7 @@
 ## Fundamentos PHP
 
 - [x] [Instalacion](#instalacion)
+- [x] [Cómo ejecutar tus archivos PHP](#cómo-ejecutar-tus-archivos-php)
 
 
 ### Instalacion
@@ -49,8 +50,31 @@ phpinfo();
 
 - Abrir la consola interactiva de **PHP** desde la terminal `php -a` y `ctrl + C` para salir de la consola.
 
+**Agunos comandos de PHP**  
 
+- `-a` Se ejecuta interactivamente.
+- `-c` <ruta>|<fichero> Busca el fichero php.ini en este directorio.
+- `-n` No se usará el fichero php.ini.
+- `-d foo[=bar]` Define la entrada INI de foo con el valor ‘bar’
+- `-e` Generate información extendida para el depurador/perfilador.
+- `-f <fichero>` Analiza y ejecuta el <fichero>.
+- `-h` Esta ayuda.
+- `-i` Información de PHP.
+- `-l` Solamente revisa la sintáxis (lint).
+- `-m` Muestra lo compilado en módulos.
+- `-r <code>` Ejecuta el <código> PHP sin utilizar las etiquetas del script
 
+ ### Cómo ejecutar tus archivos PHP
+  
+**Windows**  
+  
+- **Tip** el path `C:/xampp/htdocs` es importante por que todo lo que este en esta carpeta sera automaticamente alojado(__Hosteado__) en el navegador y que podemos visualizar en nuestro `localhost:8080` o puerto que hayamos configurado.  
+ 
+Teniendo en cuenta lo anterior en esa carpeta **htdocs** vamos crear nuestro archivo `index.php` para que se ejecute automaticamente cuando iniciemos XAMPP.   
+  
+  
+**Linux**   
+1. Creamos una Carpeta `curso-php`
 
 
 
