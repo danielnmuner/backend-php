@@ -238,8 +238,8 @@ Es cuando cambiamos el tipo de dato de una **variable** o **constante** previame
 |`(bool)` |
 |`(float)` |
 |`(string)` |
-|`(array) |
-|`(object) |
+|`(array)` |
+|`(object)` |
 
 Algunos de casting en **PHP**:
 
