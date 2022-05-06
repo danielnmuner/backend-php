@@ -47,4 +47,10 @@ phpinfo();
 12. Debemos modificar el archivo **php.ini** `sudo nano /etc/php/8.0/apache2/php.ini` buscamos `display_error=Off` y lo modificamos a `display_error=On`.
 13. Si algo no funciona podemos ademas installar `sudo apt install libapache2-mod-php8.0`
 
+- Abrir la consola interactiva de **PHP** desde la terminal `php -a` y `ctrl + C` para salir de la consola.
+
+
+
+
+
 
