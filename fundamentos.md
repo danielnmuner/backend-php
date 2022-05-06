@@ -243,22 +243,22 @@ Es cuando cambiamos el tipo de dato de una **variable** o **constante** previame
 
 Algunos de casting en **PHP**:
 
-|str-int | float-int |
-|--- | --- |
-| ```php
+ ```php
 <?php
 #Casting str-int
 $num = "5";
 $num = (int)$num;
 var_dump($num);
 #🙃Out: int(5)
-``` | ```php
+``` 
+
+```php
 <?php
 #Casting de float a int
 $dias = 5.89;
 $dias =(int)5.89;
 var_dump($dias);
 #🙃Out: int(5)
-``` |
+``` 
 
 
