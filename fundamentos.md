@@ -18,6 +18,10 @@
 - [x] [Otros operadores](#otros-operadores)
 - [x] [Tu primer programa](#tu-primer-programa)
 
+### Arreglos
+- [x] [Que son los arreglos](#que-son-los-arreglos)
+- [x] [Manipulando arreglos](#manipulando-arreglos)	
+
 ### Instalacion
 
 PHP `Hypertext Preprocessor` es un preprocesador de **HTML**. practicamente podemos hacer lo que necesitemos con **PHP**
@@ -479,4 +483,109 @@ echo "HH: $hour MM: $minutes SS: $seconds";
 
 #🙃Out: HH: 1 MM: 14 SS: 20
 ```
+
+##Arreglos, Funciones y Estructuras de control
+
+### Que son los arreglos
+---
+Es una caja donde podemos guardar varios tipos de objetos y para acceder a cada uno de ellos solo debemos utilizar el subindice. 
+
+```php
+<?php
+#Declaramos un arreglo en PHP
+$ages = [20,18,40];
+#$ages[1] podemos acceder al subindice [1]
+echo "age[1]: $ages[1]";
+
+#Declaramos un array de otra forma.
+$age = array(20,18,40);
+echo "age[1]: $age[1]";
+
+#🙃Out: age[1]: 18
+```
+
+### Arreglos asociativos
+
+El aquel que me permite reemplazar los subindices por valores predeterminados. Es muy similar a JSON por que en realidad asi nos cominucaremos a traves de HTTP/S
+
+```php
+<?php
+$ages = array(
+"Adrian" => 18,
+"Carl" => 25,
+"Newman" => 15,
+);
+#Accedemos al valor a partor de una palabra clave
+var_dump($ages["Adrian"]);
+
+#Crear un super array() o super dic
+$people = array(
+"Andrew" => array(
+    "age" => 20,
+    "language"=>"Spanish"
+),
+"Carl" => array(
+    "age" => 23,
+    "language"=>"English"
+),
+"Boyd" => array(
+    "age" => 27,
+    "language"=>"German"
+),
+);
+echo $people["Andrew"]["language"];
+#🙃Out: Spanish
+?>
+```
+### Manipulando arreglos
+---
+**PHP** tiene muchas [funciones](https://www.php.net/manual/es/ref.array.php) para manipular **arreglos** apesar de ser muchas a continuacion nos fijaremos en algunas comunes.
+	
+```php
+<?php
+
+#Funciones:
+
+
+#count: Indica la cantidad de elementos.
+$ages = [18,22,40,34];
+echo count($ages);
+#🙃Out: 4
+
+#array_push: Añade un objeto al final del arreglo
+array_push($ages,13);
+var_dump($ages);
+/*🙃Out: array(5) { 
+    [0]=> int(18) 
+    [1]=> int(22) 
+    [2]=> int(40) 
+    [3]=> int(34) 
+    [4]=> int(13) }
+*/
+
+#is_array: Valida si es un arreglo
+echo is_array($ages);
+#🙃Out: 1/true
+
+/*explode: Separa un str a traves de un sep
+primero indicamos el separador luego el arreglo*/
+
+$fruitlist = "strawberry,berry,apple";
+$fruit_list = explode(",",$fruitlist);
+var_dump($fruit_list);
+
+/*🙃Out: array(3) { 
+    [0]=> string(10) "strawberry" 
+    [1]=> string(5) "berry" 
+    [2]=> string(5) "apple" 
+}*/
+
+/*implode: Convierte un arreglo en un str
+separado por un caracter.*/
+$implode_list = implode(",",$fruit_list);
+var_dump($implode_list);
+#🙃Out: "strawberry,berry,apple"	
+```
+	
+
 
