@@ -73,8 +73,19 @@ phpinfo();
 Teniendo en cuenta lo anterior en esa carpeta **htdocs** vamos crear nuestro archivo `index.php` para que se ejecute automaticamente cuando iniciemos XAMPP.   
   
   
-**Linux**   
-1. Creamos una Carpeta `curso-php`
+**Linux**
+1. Ubicarnos en path `/var/www/html`.
+2. Modificamos permisos para poder escribir sobre la carpeta `html` esto se hace asi: `sudo chmod 777 html`
+3. Creamos archivo `touch index.php` y añadimos algo de codigo:
+```php
+<?php
+echo "Hola Mundo"
+```
+4. Iniciamos apache con Ubuntu nativo `sudo systemctl start apache2` 
+5. Iniciamos apache con WSL `sudo /etc/init.d/apache2 start` 🚀
+
+![StandingOvationGIF](https://user-images.githubusercontent.com/60556632/167160269-94d00366-2250-436d-9370-48dd9f7ce7a9.gif)
+
 
 
 
