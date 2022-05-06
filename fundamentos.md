@@ -245,7 +245,7 @@ Algunos de casting en **PHP**:
 
 |str-int | float-int |
 |--- | --- |
-|```php
+| ```php
 <?php
 #Casting str-int
 $num = "5";
