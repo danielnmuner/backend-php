@@ -3,6 +3,7 @@
 - [x] [Instalacion](#instalacion)
 - [x] [Cómo ejecutar tus archivos PHP](#cómo-ejecutar-tus-archivos-php)
 - [x] [Sintaxis básica de PHP](#sintaxis-básica-de-php)
+- [x] [Debugging y comentarios](#debugging-y-comentarios)
 
 
 ### Instalacion
@@ -119,7 +120,43 @@ echo "El resultado de 2 X 12 es: ".(2*12)."\n";
 /*Etiqueta de Cierre - solo se usa si combinamos PHP con otro lenguaje como HTML*/
 ?>
 ```
+ 
+### Debugging y comentarios
 
+El profe aplica el concepto de debugging a una lista que luce mas como un diccionario. Debugging seria sinonimo de inspeccionar y eso es lo que hacemos con la variable `$personas`.  
+ ```PHP
+<?php
+/*Creamos un arreglo en PHP*/
+$personas = [
+	"Andrew" => 22,
+	"Mr. Michi" => 15,
+	"Albert" => 65
+];
 
+/*Inspeccionar el contenido de una variable*/
+var_dump($personas);
 
+/*Es igual que var_dump()*/
+print_r($personas);
+
+echo "\n";
+?>
+```
+Output var_dump($personas):
+```php
+array(3) { 
+ ["Andrew"]=> int(22) 
+ ["Mr. Michi"]=> int(15) 
+ ["Albert"]=> int(65) 
+ }
+``` 
+Output print_r($personas):
+```php
+Array ( 
+ [Andrew] => 22 
+ [Mr. Michi] => 15 
+ [Albert] => 65 
+ )
+``` 
+ 
 
