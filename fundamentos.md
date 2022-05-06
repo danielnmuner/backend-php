@@ -11,6 +11,10 @@
 ### Tipos de Datos
 - [x] [Tipos de datos](#tipos-de-datos)
 
+### Operadores en PHP
+- [x] [Operadores Logicos](#operadores-logicos)
+- [x] [Operadores aritméticos](#operadores-aritméticos)
+
 
 ### Instalacion
 
@@ -229,7 +233,7 @@ El tipado es demasiado debil 😂, anyway es una mala pratica.
 ```
 
 ### Casting de Datos
-
+---
 Es cuando cambiamos el tipo de dato de una **variable** o **constante** previamente declarada. 
 
 |Sintax|
@@ -261,4 +265,51 @@ var_dump($dias);
 #🙃Out: int(5)
 ``` 
 
+### Operadores Logicos
+
+- Union `$str_a and $str_a` alternativa `$str_a && $str_a`
+- Disyunsion `$str_a or $str_a` alternativa `$str_a || $str_a`
+- Negacion **`!`** como en `!$str_a and $str_a`.
+
+```php
+<?php
+$michis_felinos = true;
+$michis_4_patas = true;
+$michis_vuelan = false;
+$michis_leen = false;
+
+var_dump($michis_felinos && $michis_leen);
+#🙃Out: bool(false)
+
+var_dump(!$michis_felinos && $michis_4_patas);
+#🙃Out: bool(false)
+```
+### Operadores aritméticos
+---
+|Operador	|Función|
+| --- | --- |
+|+	|**Adición**: Suma dos o más números |
+|-	|**Sustracción**: Resta dos o más números|
+|*	|**Multiplicación**: Multiplica dos o más números|
+|/	|**División**: Divide y regresa el cociente|
+|%	|**Módulo**: Divide y regresa el residuo|
+|**	|**Potenciación**: Eleva un número al exponente dato|
+|+	|**Identidad**: Convierte un **str** a **int**|
+
+```php
+<?php
+#Operadores Aritmeticos
+$var_a = "5";
+$var_b = 6;
+
+#Casteamos var_a de str-int
+echo +$var_a;
+#🙃Out: 5
+
+echo $var_a ** $var_b;
+#🙃Out: 15625
+
+echo $var_b % $var_a;
+#🙃Out: 1
+```
 
