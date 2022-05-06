@@ -16,6 +16,7 @@
 - [x] [Operadores aritméticos](#operadores-aritméticos)
 - [x] [Operadores relacionales](#operadores-relacionales)
 - [x] [Otros operadores](#otros-operadores)
+- [x] [Tu primer programa](#tu-primer-programa)
 
 ### Instalacion
 
@@ -435,7 +436,7 @@ la operacion sobre la asignacion.
 $resultado = ($michis_4_patas and $michis_leen;
 echo $resultado; #🙃Out: false
 ```
-Aqui hay otro ejemplo que se podria resolver usando **()** o colocando el operador antes de la variable como el caso de **++**.
+- Aqui hay otro ejemplo que se podria resolver usando **`()`** o colocando el operador antes de la variable como el caso de **`++`**. 
 
 ```php
 <?php
@@ -451,4 +452,31 @@ var_dump($n_counter , $counter);
 #🙃Out: int(0),int(1)
 ```
 
+### Tu primer programa
+---
+
+```php
+<?php
+#Solicitar info al usuario ✌️
+$seconds = readline("Enter time in seconds: ");
+$seconds = 4460;
+
+/*Convertimos los segundos a horas
+hacemos el casteo y tenemos en cuenta
+la presedencia por eso debemos usar "()".
+*/
+$hour = (int) ($seconds / 3600);
+#Calculamos el reciduo
+#Y asi conseguimos los segundos
+$seconds = $seconds % 3600;
+
+#Calulamos los minutos por cada 60s
+#Y recalculamos los segundos
+$minutes = (int) ($seconds / 60);
+$seconds = (int) ($seconds % 60); 
+
+echo "HH: $hour MM: $minutes SS: $seconds";
+
+#🙃Out: HH: 1 MM: 14 SS: 20
+```
 
