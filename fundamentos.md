@@ -2,6 +2,7 @@
 
 - [x] [Instalacion](#instalacion)
 - [x] [Cómo ejecutar tus archivos PHP](#cómo-ejecutar-tus-archivos-php)
+- [x] [Sintaxis básica de PHP](#sintaxis-básica-de-php)
 
 
 ### Instalacion
@@ -85,6 +86,39 @@ echo "Hola Mundo"
 5. Iniciamos apache con WSL `sudo /etc/init.d/apache2 start` 🚀
 
 ![StandingOvationGIF](https://user-images.githubusercontent.com/60556632/167160269-94d00366-2250-436d-9370-48dd9f7ce7a9.gif)
+
+### Sintaxis básica de PHP
+
+Son basicamente reglas que se deben seguir para determinado lenguaje. Ahora empezemos con **PHP**.
+
+```php
+
+<?php
+/*🙄Etiqueta de Apertura, tambien es importante 
+el punto y coma ";" al final de cada linea.
+*/
+
+/*Imprimir en pantalla*/
+echo "Hola, World Ich bin haciendolo great! \n";
+
+/*Declaracion de Variables*/
+$nombre = "Daniel";
+$apellido = " Diaz";
+
+/*Concatenar variables a texto
+Opcion # 1
+*/
+echo "Yo me llamo ".$nombre.$apellido."\n";
+
+/*Opcion # 2, siempre usando comillas dobles*/
+echo "Yo me llamo $nombre $apellido \n";
+/*
+Operacion Numerica*/
+echo "El resultado de 2 X 12 es: ".(2*12)."\n";
+
+/*Etiqueta de Cierre - solo se usa si combinamos PHP con otro lenguaje como HTML*/
+?>
+```
 
 
 
