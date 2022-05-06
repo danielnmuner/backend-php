@@ -1,10 +1,15 @@
 ## Fundamentos PHP
 
+![php](https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1200px-PHP-logo.svg.png)
+
 - [x] [Instalacion](#instalacion)
 - [x] [Cómo ejecutar tus archivos PHP](#cómo-ejecutar-tus-archivos-php)
 - [x] [Sintaxis básica de PHP](#sintaxis-básica-de-php)
 - [x] [Debugging y comentarios](#debugging-y-comentarios)
 - [x] [Variables y constantes](#variables-y-constantes)
+
+### Tipos de Datos
+- [x] [Tipos de datos](#tipos-de-datos)
 
 
 ### Instalacion
@@ -178,8 +183,82 @@ Una **constante** es una caja con cualquier cosa pero no cambia en el tiempo. A 
  
 ```php
 #Definimos una constante, siempre en Mayusculas
-define("NUMERO_PI",3,14);
+define("NUMERO_PI",3.14);
 
 echo NUMERO_PI;
 ```	
+
+### Tipos de Datos
+---
+**PHP** es de tipado debil luego no debemos indicar que tipo de dato estamos declarando.🧐.
+**Integer**:
+```php
+<?php
+$num =  25;
+var_dump($num);
+#🙃Out: int(25)
+```
+**String**:
+```php
+<?php
+$num =  "2500";
+var_dump($num);
+#🙃Out: string(2) "25"
+```
+
+**Integer + String(Number)**:
+```php
+<?php
+$num_a =  "25";
+$num_b = 25;
+$num_c = $num_a + $num_b;
+var_dump($num_c);
+#🙃Out: int(50)
+```
+**Integer + String**:
+```php
+<?php
+$papas = "10 papas en el costal";
+$cuantas_papas_hay = $papas + 5;
+
+echo $cuantas_papas_hay;
+
+/*🙃Out: Warning: A non-numeric value encountered in C:\xampp\htdocs\index.php on line 3
+15*/ Basicamente toma unicamente el 10 y lo suma a 5.
+El tipado es demasiado debil 😂, anyway es una mala pratica.
+```
+
+### Casting de Datos
+
+Es cuando cambiamos el tipo de dato de una **variable** o **constante** previamente declarada. 
+
+|Sintax|
+| --- |
+|`(int)` |
+|`(bool)` |
+|`(float)` |
+|`(string)` |
+|`(array) |
+|`(object) |
+
+Algunos de casting en **PHP**:
+
+|str-int | float-int |
+|--- | --- |
+|```php
+<?php
+#Casting str-int
+$num = "5";
+$num = (int)$num;
+var_dump($num);
+#🙃Out: int(5)
+``` | ```php
+<?php
+#Casting de float a int
+$dias = 5.89;
+$dias =(int)5.89;
+var_dump($dias);
+#🙃Out: int(5)
+``` |
+
 
