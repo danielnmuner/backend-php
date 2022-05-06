@@ -4,6 +4,7 @@
 - [x] [Cómo ejecutar tus archivos PHP](#cómo-ejecutar-tus-archivos-php)
 - [x] [Sintaxis básica de PHP](#sintaxis-básica-de-php)
 - [x] [Debugging y comentarios](#debugging-y-comentarios)
+- [x] [Variables y constantes](#variables-y-constantes)
 
 
 ### Instalacion
@@ -142,7 +143,7 @@ print_r($personas);
 echo "\n";
 ?>
 ```
-Output var_dump($personas):
+Output **var_dump**($personas):
 ```php
 array(3) { 
  ["Andrew"]=> int(22) 
@@ -150,7 +151,7 @@ array(3) {
  ["Albert"]=> int(65) 
  }
 ``` 
-Output print_r($personas):
+Output **print_r**($personas):
 ```php
 Array ( 
  [Andrew] => 22 
@@ -158,5 +159,27 @@ Array (
  [Albert] => 65 
  )
 ``` 
+### Variables y constantes
+	
+Una **variable** es un caja `Espacio en Memoria` donde podemos guardar cualquier cosa `Tipos de Datos` que puede cambiar en el tiempo. 
+
+```php
+<?php
+#Las variables van en minuscula
+
+$num_a = 8;
+$num_a = 4;
+
+echo $num_a + $num_b;
+#Output: 12
+```
+	
+Una **constante** es una caja con cualquier cosa pero no cambia en el tiempo. A diferencia de una variable se escribe en **MAYUSC** y no lleva signo **$**.
  
+```php
+#Definimos una constante, siempre en Mayusculas
+define("NUMERO_PI",3,14);
+
+echo NUMERO_PI;
+```	
 
