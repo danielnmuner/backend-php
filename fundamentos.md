@@ -22,6 +22,10 @@
 - [x] [Que son los arreglos](#que-son-los-arreglos)
 - [x] [Manipulando arreglos](#manipulando-arreglos)	
 
+### Condicionales
+- [x] [Decisiones con if y else](#decisiones-con-if-y-else)
+- [x] [Switch](#switch)
+
 ### Instalacion
 
 PHP `Hypertext Preprocessor` es un preprocesador de **HTML**. practicamente podemos hacer lo que necesitemos con **PHP**
@@ -585,6 +589,57 @@ separado por un caracter.*/
 $implode_list = implode(",",$fruit_list);
 var_dump($implode_list);
 #🙃Out: "strawberry,berry,apple"	
+```
+	
+### Decisiones con if y else
+El tipo de dato usado para tomar decisiones son los valores booleanos `true/false`.
+
+```php
+<?php
+#Declaramos un variable
+$available_seats = 4;
+
+#Usamos un operador relacional para obtener
+#una respuesta de tipo booleana.
+
+if ($available_seats > 4){
+    echo "You can see the film";
+}
+elseif ($available_seats == 4){
+    echo "Cool you can invite 3 more";
+}
+else {
+    echo "Sorry, but you can't see the film";
+}
+#🙃Out: You can see the film
+?>
+```
+### switch
+![image](https://user-images.githubusercontent.com/60556632/167228992-fc5c7c48-49e4-4d0d-b03f-e7a07960afea.png)
+
+```php
+<?php
+$age_michi = 11;
+#Variable a evaluar
+switch ($age_michi) {
+    case 11: #Case 11 esta vacio entonces salta a caso 10
+    case 10:
+        #Codigo caso 1
+        echo "Michi is 10 or 11 years";
+        break;
+    case 12:
+        #Codigo caso 2
+        echo "Michi is 12 years";
+        break;
+    case 13:
+        #Codigo caso 3
+        echo "Michi is 13 years";
+        break;
+    default:
+        #Codigo default
+        echo "Michi is young";
+}
+?>	
 ```
 	
 
