@@ -32,6 +32,9 @@
 - [x] [Ciclo for](#ciclo-for) 
 - [x] [Ciclo foreach](#ciclo-foreach)
 
+### Funciones
+- [x] [Funciones](#funciones)
+
 ### Instalacion
 
 PHP `Hypertext Preprocessor` es un preprocesador de **HTML**. practicamente podemos hacer lo que necesitemos con **PHP**
@@ -823,3 +826,23 @@ Tenemos cafe Capuccino
 Tenemos cafe Mocca
 */	
 ```
+- **Fibonacci** en PHP
+
+```php
+<?php
+#Fibonacci con ciclo for
+$num_store = 8;
+$anterior = 0;
+$actual= 1;
+
+for ($i=2; $i <= $num_store ; $i++) { 
+    $temporal = $actual;
+    $actual += $anterior;
+    $anterior = $temporal;
+}
+echo "Formas de llegar $actual";
+#fn = (fn-1) + (fn-2)
+```
+### Funciones
+---
+
