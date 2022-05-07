@@ -26,6 +26,12 @@
 - [x] [Decisiones con if y else](#decisiones-con-if-y-else)
 - [x] [Switch](#switch)
 
+### Bucles
+- [x] [Ciclo while](#ciclo-while)
+- [x] [Do while](#do-while)
+- [x] [Ciclo for](#ciclo-for) 
+- [x] [Ciclo foreach](#ciclo-foreach)
+
 ### Instalacion
 
 PHP `Hypertext Preprocessor` es un preprocesador de **HTML**. practicamente podemos hacer lo que necesitemos con **PHP**
@@ -641,6 +647,179 @@ switch ($age_michi) {
 }
 ?>	
 ```
+**Reto-Condicionales**
 	
+```php
+<?php
+/*Twitch es una plataforma para realizar
+transmisiones en vivo y tambien recibir 
+donaciones de los usuarios. Para poder retirar
+las donaciones debe haber un minimo de $100 USD
+*/
 
+$donations = 98;
+if ($donations >= 100) {
+    echo "Hey!, You've met $100 USD";
+}
+else {
+    echo "Hold on!,No $100 USD yet";
+}
+?>
+#🙃Out: Hold on!,No $100 USD yet	
+```
+	
+### Ciclo while
+---
+```php
+<?php
+#Contador sera el punto de referencia
+$contador = 0;
+while($contador<=100) {
+    #Se imprimiran 100 veces nuestro mensaje
+    echo "Este curso esta increible \n";
+    $contador ++;
+}	
+```
 
+### Do While
+---
+```php
+<?php
+/*Ejecuta Do al menos usa vez, o tantes veces
+como se cumpla la condicion dada.*/
+$usernames = ["Nickashh","Muhamad","Strovitchk"];
+do {  
+    $username = readline("Ingresa tu Nickname: ");
+/*in_array: (objeto,array)    
+#Ejecuta do siempre que el username ente
+en el arreglo de usernames. Este ejemplo es util
+para evitar usuarios duplicados pues no admite
+aquellos que ya existen. 
+*/
+}while (in_array($username,$usernames));
+```
+### Ciclo for
+
+```php
+<?php
+
+#1. Inicializamos contador "i"
+#2. Establecemos una condicion con "i"
+#3. Incrementamos contador "i++"
+
+for ($i=0; $i <10 ; $i++) { 
+    /*Se inprime en pantalla hasta
+    que se cumple la condicion del paso 2.
+    */
+    echo $i;
+}
+#🙃Out:0123456789
+
+/*Agregar mas variables a "for" sin afectar
+la condicion inicial del contador.
+*/
+
+for($i=0,$j=0;$i<10;$i++,$j+=2){
+    echo "i = $i j= $j"."\n";
+}
+/*🙃Out:  
+i = 0 j= 0 
+i = 1 j= 2 
+i = 2 j= 4 
+i = 3 j= 6 
+i = 4 j= 8 
+i = 5 j= 10 
+i = 6 j= 12 
+i = 7 j= 14 
+i = 8 j= 16 
+i = 9 j= 18
+*/
+```
+### Ciclo foreach
+	
+Nos permite recorrer iterables y realizar operaciones. 
+```php
+#Sintaxis 
+foreach ($iterable as $valor) {
+   echo $valor;
+}
+
+foreach ($iterable as $llave => $valor) {
+   echo $valor, $llave;
+}
+```
+
+```php
+<?php
+$cafe_store = array(
+    "Americano" => 20,
+    "Latte" => 25,
+    "Capuccino" => 27.5,
+    "Mocca" => 24
+);
+
+foreach ($cafe_store as $price) {
+    echo "El cafe $$price USD";
+}
+/*🙃Out: 
+El cafe $20 USD
+El cafe $25 USD
+El cafe $27.5 USD
+El cafe $24 USD
+*/
+
+#$key => $valor
+foreach ($cafe_store as $cafe => $price) {
+    echo "El $cafe cuesta $$price USD";
+}
+/*🙃Out: 
+El Americano cuesta $20 USD
+El Latte cuesta $25 USD
+El Capuccino cuesta $27.5 USD
+El Mocca cuesta $24 USD
+*/
+?>
+```
+- **Break** y **Continue** son usadas en los bucles para salir a determinado momento o continuar el bucle realizando saltos determinados.
+
+```php
+<?php
+$cafe_store = array(
+    "Americano" => 20,
+    "Latte" => 25,
+    "Capuccino" => 27.5,
+    "Mocca" => 24,
+    "Recalentado"=>10
+);
+
+#Break
+
+foreach ($cafe_store as $cafe => $price) {
+
+    echo "Actualemente encontre al cafe $cafe";
+    if ($cafe ==  "Latte"){
+        echo "Encontramos al cafe $cafe";
+        break;
+    }
+}
+/*🙃Out: 
+Actualemente encontre al cafe Americano
+Actualemente encontre al cafe Latte
+Encontramos al cafe Latte
+*/
+
+#Continue
+foreach ($cafe_store as $cafe => $price) { 
+    if ($cafe ==  "Recalentado"){
+        continue;
+    }
+    echo "Tenemos cafe $cafe";
+
+}
+/*🙃Out:
+Tenemos cafe Americano
+Tenemos cafe Latte
+Tenemos cafe Capuccino
+Tenemos cafe Mocca
+*/	
+```
