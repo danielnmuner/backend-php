@@ -35,6 +35,10 @@
 ### Functions
 - [x] [Funciones](#funciones)
 
+## Integracion de PHP con HTML
+- [x] [Introduccion](#introduccion)
+- [x] [PHP como preprocesador de HTML](#php-como-preprocesador-de-html) 
+
 ### Instalacion
 
 PHP `Hypertext Preprocessor` es un preprocesador de **HTML**. practicamente podemos hacer lo que necesitemos con **PHP**
@@ -1250,6 +1254,24 @@ solo y unicamente cierra la llave del foreach-->
 $iterable es una lista de links de imagenes.-->
         <img src="<?php echo $value; ?>">
     <?php }?>
+<h1><?php echo "Hola, Servidor Funcionando!😎";?></h1>
+<?php echo "<h1>Hola, Servidor Funcionando!😎<br></h1>";?>
 </body>
 ```
+	
+### Introduccion
+---
+- **SSR** Server Side Rendering: El servidor es quien procesa y renderiza los documentos. En este caso **PHP** realiza **SSR**.
+- **CSR**: Es el tipo de renderizado en `React.js` o `Vue.js`. Es el navegador del cliente quien por medio de codigo JavaSript estructura y renderiza todo el website.
+- **SSG** Static Site Generation: La computadora del programador es la que renderiza y estructura y carga al servidor los archivo de alguna forma ya renderizados.
 
+### PHP como preprocesador de HTML
+---
+Existen una alternativa mas legible para imprimir texto en pantalla con **PHP**.
+	
+- ```php  <?php 
+#1. Declaramos una variable en PHP para usarla en HTML
+$name = "Mr. Chapman";
+?> ```
+
+- Podemos usar la forma tradicional `<?php echo "<b>$name</b>";?>` o podemos usar `<?= "<i>$name!</i>"?>` donde no tenemos que colocar `php` en cambio `=` y ademas no colocamos `;` al fina del `echo`.
