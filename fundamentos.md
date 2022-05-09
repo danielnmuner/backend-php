@@ -32,7 +32,7 @@
 - [x] [Ciclo for](#ciclo-for) 
 - [x] [Ciclo foreach](#ciclo-foreach)
 
-### Funciones
+### Functions
 - [x] [Funciones](#funciones)
 
 ### Instalacion
@@ -1066,7 +1066,7 @@ $array[2] = array('clave_a' => 'y', 'clave_b' => 'a');
 ```
 **End Quick Topic**
 	
-- **usort es una funcion de Orden superior puesto que dentro de si misma lleva como argumento otra funcion. 
+- **usort** es una funcion de Orden superior puesto que dentro de si misma lleva como argumento otra funcion. 
 	
 ```php
 <?php
@@ -1108,3 +1108,5 @@ var_dump($cafe_price);
     [4]=> int(34) 
 }*/	
 ```
+### Build-In Functions
+**PHP** cuenta con muchas funciones como **usort()** las cuales podrian resolver muchos de los problemas. Las funciones de encuentran en la documentacion de PHP por lo cual debemos ser especificos al momento de buscarlas. E.g. [Funciones de strings](https://www.php.net/manual/es/ref.strings.php)
