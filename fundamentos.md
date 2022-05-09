@@ -876,7 +876,7 @@ for (i=0;i<=10;i++)
 }
 ```
 ### Parámetros en las funciones
-
+---
 En este punto le estamos entregando argumentos a la funcion para que sean procesados por la funcion. 
 
 ```php
@@ -897,7 +897,7 @@ is_legend($socre);
 ```
 
 ### Profundicemos en los parametros
-
+---
 ```php
 <?php
 /*Asignamos valores por defecto a las variables.
@@ -985,4 +985,126 @@ function sum (...$args){
 }
 sum (1,2,3,4,5);
 #🙃Out: La suma total es: 15
+```
+### Return
+---
+```php
+<?php
+#Return es una funcion. 
+function freddy(){
+#Switch combinado con "rand" 
+#para elegir frases aleatorias
+    $num = rand(1,4);
+    $phrase = "";
+    switch ($num) {
+        case 1:
+            $phrase = "Nunca pares de aprender";
+            break;
+        case 2:
+            $phrase = "Las empresas no son familia";
+            break;
+        case 3:
+            $phrase = "La tecnologia es el futuro";
+            break;
+        case 4:
+            $phrase = "Amo PHP";
+            break;
+    }
+#Return devuelve especificamente lo que le pedimos
+#$phrase, variable que se reasigna en casa llamado
+    return $phrase;
+}
+#Imprimimos en pantalla nuestra funcion. 
+echo freddy();
+```
+### Operador de nave espacial
+---
+- **Quick Tipic** [usort](https://www.php.net/manual/es/function.usort.php): Es una funcion de **PHP** que ordena una lista  y se parece bastante a las de orden superior en Python donde un argumentos es el **array** y otro es otra funcion. **Sintax**: `usort(array &$array, callable $value_compare_func): bool`, donde **callable**: `callback(mixed $a, mixed $b): int`. 
+
+- **Ejemplo**
+```php
+<?php
+/*callback(mixed $a, mixed $b): int, que compara el primer valor
+del arreglo con el segundo valor, asi usort va ordenando.
+*/
+function cmp($a, $b)
+{
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a < $b) ? -1 : 1;
+}
+#Arreglo a ordenar.
+$a = array(3, 2, 5, 6, 1);
+
+#Transformamos el arreglo "inplace".
+usort($a, "cmp");
+
+#Se imprime en pantalla ordenadamente.
+foreach ($a as $clave => $valor) {
+    echo "$clave: $valor\n";
+}
+/*🙃Out:
+0: 1
+1: 2
+2: 3
+3: 5
+4: 6
+*/
+?>
+```
+> **Nota**: Obviamente, en este caso tan trivial, la función **sort()** sería más apropiada pero no lo es cuando se usa en arrays multidimencionales, en ese caso usamos usort.
+	
+```php
+$frutas[0]["fruta"] = "uvas";
+$frutas[1]["fruta"] = "limones";
+$frutas[2]["fruta"] = "manzanas";
+	
+$array[0] = array('clave_a' => 'z', 'clave_b' => 'c');
+$array[1] = array('clave_a' => 'x', 'clave_b' => 'b');
+$array[2] = array('clave_a' => 'y', 'clave_b' => 'a');	
+```
+**End Quick Topic**
+	
+- **usort es una funcion de Orden superior puesto que dentro de si misma lleva como argumento otra funcion. 
+	
+```php
+<?php
+
+$cafe_price = [12,34,1,13,23];
+
+#Utilizamos una funcion anonima
+usort($cafe_price,function($a,$b){
+/*El operador Spaceship "<=>" retorna valores
+entre -1 y 1 y esto es exactamente lo que utiliza
+usort() para ordenar.
+1. usort() toma los dos primeros valores de arreglo
+2. function los recibe y retorna:
+#$a<$b:
+echo $var_a <=> $var_d;
+#Out: 🙃 -1
+
+#$a>$b:
+echo $var_d <=> $var_a;
+#Out: 🙃 1
+
+##$a==$b:
+echo $var_a <=> $var_b;
+#Out: 🙃 0
+    return $a <=> $b;
+3. usort utiliza el valor retornado para ordenar
+el array. 
+*/
+return $a<=>$b;
+});
+
+var_dump($cafe_price);
+
+/*🙃Out: array(5) { 
+    [0]=> int(1) 
+    [1]=> int(12) 
+    [2]=> int(13) 
+    [3]=> int(23) 
+    [4]=> int(34) 
+}*/	
 ```
