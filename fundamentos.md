@@ -1126,3 +1126,118 @@ function obtener_hora() {
 #Concatenamos la func a un str.
   echo "Claro, son las ". obtener_hora();
 ```
+---
+### Hangman Game
+---
+```php
+<?php
+
+#7.Limpiamos pantalla cada despues 
+function clear(){
+
+#Asi le decimos al sistema opperativo que
+#limpie la pantalla en windows
+    if (PHP_OS =="WINNT") {
+        system("cls");
+    }
+#Asi en linux o Mac
+    else {
+        system("clear");
+    }
+}
+
+
+#Reto: Hangman
+
+#1.Lista de palabras:
+$words = ["Beberage","Square","High",
+"Pain","Singer","Endevour","Doer"];
+
+#Constante max intentos:
+define("MAX_ATTEMPS",6);
+#Bienvenida al Juego
+echo "Hangman Game!";
+
+#2.Elegimos una palabra aleatoria de $words
+$choosen_word = $words[rand(0,6)];
+
+#3.Standarizamos la palabra
+$choosen_word = strtolower($choosen_word);
+$word_len = strlen($choosen_word);
+$underscore_letter = str_pad("",$word_len,"_");
+#🙃Out: endevour es igual a ________
+
+#Intentos del usuario, indicamos total letras
+$atteps = 0;
+echo "Esta palabra tiene $word_len letras";
+
+#4. Solicitamos al usuario que ingrese letras
+do{
+    $player_letter = readline("Ingresa una letra");
+    $player_letter = strtolower($player_letter);
+
+
+    /*5.Validamos si la letra esta dentro de 
+    la palabra con "str_contains()" retorna "true" 
+    si $player_letter esta en $choosen_word.*/
+    if(str_contains($choosen_word, $player_letter)){
+        $offset = 0;
+    /*La funcion "strpos()" encuentra la posicion 
+    de la primera ocurrencia de un caracter 
+    en un string, cuando ya no hay mas ocurrencias
+    la funcion devuelve "false", por esta razon 
+    usamos "ciclo while" pues se detendra cuando la 
+    letra no este dentro del str.*/
+
+    #El concepto de presedencia hace posible que podamos
+    #declara $letter_position dentro de "while"
+        while(
+            ($letter_position = strpos($choosen_word,$player_letter,$offset))!==false\
+            ){
+            $underscore_letter[$letter_position] = $player_letter;
+
+    /*Offset es el punto de partida de "strpos()" luego que
+    encontramos la primera ocurrencia por ejemplo en 
+    la posicion 3, entonces cambiamos offset para ahora
+    strpos() inicie desde la posicion 4, asi hasta 
+    que no hay ocurrencias y retorne false para salir
+    del ciclo while.*/
+            $offset = $letter_position + 1;
+        }
+    }
+    else {
+    #6.Notificamos al usuario cuantos intentos le quedan. 
+        clear();
+        $attemps++;
+        echo "Letra incorrecta 😥, Te quedan".(MAX_ATTEMPS-$attemps)." intentos";
+        #Delay de 2 segundos para mostrar el mensaje anterior 
+        #y luego limpiar la pantalla.
+        sleep(2);
+    }
+}
+#Se ejecuta mientras no se sobrepasen los intentos maximos
+#y mientras $underscore_letter != $choosen_word no sean iguales
+while($attemps < MAX_ATTEMPS && $underscore_letter != $choosen_word);
+
+#Limpiamos pantalla cuando termina el programa.
+clear();
+
+#8.Le informa al usuario el resultado del Juego
+if ($attemps < MAX_ATTEMPS){
+    echo "Felicidades! Has adivinado la palabra";
+}
+else {
+    echo "Suerte para la proxima";
+}
+#La palabra del PC
+echo "La palabra es: $choosen_word";
+#Lo que logro el usuario.
+echo "Tu descubriste: $underscore_letter";
+```
+---
+### PHP con HTML
+---
+**PHP** fue diseñado para preprocesar **HTML**, para realmente tratar a HTML como un lenguaje de Programacion. 
+
+
+
