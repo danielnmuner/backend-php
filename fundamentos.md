@@ -1110,3 +1110,19 @@ var_dump($cafe_price);
 ```
 ### Build-In Functions
 **PHP** cuenta con muchas funciones como **usort()** las cuales podrian resolver muchos de los problemas. Las funciones de encuentran en la documentacion de PHP por lo cual debemos ser especificos al momento de buscarlas. E.g. [Funciones de strings](https://www.php.net/manual/es/ref.strings.php)
+
+```php
+<?php
+#Reto: Obtener la hora actual. 
+function obtener_hora() {
+
+#Set timezone desde php.ini o usando la func
+#date_default_timezone_set("America/Bogota");
+    date_default_timezone_set("America/Bogota");
+    return date("h:i a");
+  }
+  
+  echo "Hola, me podrias decir que hora es? \n";
+#Concatenamos la func a un str.
+  echo "Claro, son las ". obtener_hora();
+```
