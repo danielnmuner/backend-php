@@ -845,4 +845,144 @@ echo "Formas de llegar $actual";
 ```
 ### Funciones
 ---
+Permiten ejecutar codigo varias veces, solo necesita los datos para procesarlos y entregar una salida.
 
+```php
+<?php
+
+function get_pokemon() {
+
+#Asignamos un valor aleatorio de 1 a 5
+$random_num = rand(1,5);
+#Opciones de 1 a 3 con switch + caso default
+    switch ($random_num) {
+        case 1:
+            echo "Pikachu";
+            break;
+        case 2:
+            echo "Charmander";
+            break;
+        case 3:
+            echo "Burbasor";
+            break;
+#Si 4 o 5 entonces aplica caso default.
+        default:
+            echo "I'm sorry!";
+    }
+}
+#Llamamos la funcion varias veces🙂
+for (i=0;i<=10;i++)
+    get_pokemon();
+}
+```
+### Parámetros en las funciones
+
+En este punto le estamos entregando argumentos a la funcion para que sean procesados por la funcion. 
+
+```php
+<?php
+#Pasamos el arg $platzi_rank a la funcion
+function is_legend($platzi_rank)
+{
+    if($platzi_rank >= 20000){
+        echo "!Eres estudiante Legend!";
+    }
+    else {
+        echo "Lo sentimos, aun no alcanzas el nivel!";
+    }
+}
+#Solicitamos al usuario el score de platzi_rank
+$score = (int) readline("Cual es tu platzi rank");
+is_legend($socre);
+```
+
+### Profundicemos en los parametros
+
+```php
+<?php
+/*Asignamos valores por defecto a las variables.
+🧐Este valor solo se toma en cuenta si el usuario
+no lo indico los argumentos solicitados */
+function sum($a = 0,$b = 0)
+{
+    echo "La suma de $a + $b es: ".$a+$b;
+}
+#No hay error gracias a los valores por default
+sum();
+```
+
+- Quick Topic **Array Unpacking**: Es un metodo para concatenar arreglos en **PHP**. 
+
+```php
+<?php
+#Declaramos dos arrays
+$array_a = [1,2,3];
+$array_b = [4,5,6];
+
+#Concatemanos arrays usando arrayunpaking method
+$concat_result = [...$array_a, ...$array_b];
+var_dump($concat_result);
+/*🙃Out: Arrays concatenados
+array(6) { 
+    [0]=> int(1) 
+    [1]=> int(2) 
+    [2]=> int(3) 
+    [3]=> int(4) 
+    [4]=> int(5) 
+    [5]=> int(6) 
+}
+*/
+```
+- Tambien es util para entregar argumentos a una funcion en forma de arreglo. 
+
+```php
+<?php
+
+#Funcion suma que requiere dos argumentos.
+function sum ($a=0,$b=0){
+#Respuesta de la funcion.
+    echo "La suma de $a + $b es: ".$a+$b;
+}
+#Donde $num es un array con los valores $a y $b
+$num = [10,100];
+
+#Argumentos entregados a traves de unpacking
+#Basicamente los "..." son la clave del metodo.
+sum(...$num);
+#🙃Out: La suma de 10 + 100 es: 110
+```
+- **Quick Topic** Paramentros dinamicos: Consiste que el numero de argumentos sea definido por el usuario y no por el programador, asi su tamaño sera dinamico. **Primero**:
+
+```php
+<?php
+#Esto sucede cuando usamos array-unpacking
+function sum (...$args){
+#Internamente 1 y 2 se convierten en array([1,2])
+#No importan la cantidad de args sum(1,2,3,4,etc)
+    var_dump($args);
+}
+sum (1,2);
+/*🙃Out: 
+array(2) { 
+    [0]=> int(1) 
+    [1]=> int(2) 
+}
+*/
+```
+- Perfecto!, Ahora que tenemos un array-vector de n valores podemos operarlo dentro de nuestra funcion usando `foreach`. 
+ 
+```php
+<?php
+function sum (...$args){
+#$args = array([1,2,3,4,5]) -> Iterable😎 
+#Variable que se sumara con cada valor del array
+    $add = 0;
+#Recorre el iterable.
+    foreach ($args as $num){
+        $add += $num;
+    }
+    echo "La suma total es: $add";
+}
+sum (1,2,3,4,5);
+#🙃Out: La suma total es: 15
+```
