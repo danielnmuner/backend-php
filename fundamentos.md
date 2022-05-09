@@ -1237,7 +1237,19 @@ echo "Tu descubriste: $underscore_letter";
 ---
 ### PHP con HTML
 ---
-**PHP** fue diseñado para preprocesar **HTML**, para realmente tratar a HTML como un lenguaje de Programacion. 
+**PHP** fue diseñado para preprocesar **HTML**, para realmente tratar a HTML como un lenguaje de Programacion. Como se ve en el ejemplo PHP esta completamente arraigado a HTML.
 
+```php
+<body>
+    <h1>Esto es PHP combinado con HTML</h1>
+<!--Hay dos bloques de PHP donde el segundo 
+solo y unicamente cierra la llave del foreach-->
+    <?php foreach ($iterable as $value){?>
 
+<!-- asigna a "src" $value de cada ciclo donde 
+$iterable es una lista de links de imagenes.-->
+        <img src="<?php echo $value; ?>">
+    <?php }?>
+</body>
+```
 
