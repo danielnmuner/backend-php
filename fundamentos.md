@@ -1268,9 +1268,8 @@ $iterable es una lista de links de imagenes.-->
 ### PHP como preprocesador de HTML
 ---
 Existen una alternativa mas legible para imprimir texto en pantalla con **PHP**.
-	
-- ```php  <?php 
-#1. Declaramos una variable en PHP para usarla en HTML
+```php  <?php 
+#Declaramos una variable en PHP para usarla en HTML
 $name = "Mr. Chapman";
 ?> ```
 
