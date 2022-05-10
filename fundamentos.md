@@ -39,6 +39,9 @@
 - [x] [Introduccion](#introduccion)
 - [x] [PHP como preprocesador de HTML](#php-como-preprocesador-de-html) 
 
+### Manejo de formularios
+- [x] [Cómo obtener una solicitud al servidor con PHP](#cómo-obtener-una-solicitud-al-servidor-con-php)
+
 ### Instalacion
 
 PHP `Hypertext Preprocessor` es un preprocesador de **HTML**. practicamente podemos hacer lo que necesitemos con **PHP**
@@ -1375,6 +1378,41 @@ let animal_name = "<?= $animal_name ?>";
 No solo se refiere a codigo anidado sino en general al orden y la legibilidad a nivel visual. Buena practica es colocar toda la logica de **PHP** al inicio del archivo y luego abajo **HTML** con **PHP** que se imprime en pantalla.
 	
 ![image](https://user-images.githubusercontent.com/60556632/167523626-194ac60b-b01d-4e6d-b69f-ca7b79d61477.png)
+
+### Cómo obtener una solicitud al servidor con PHP
+
+PHP define las variables superglobales a traves de las cuales podemos acceder a cierta informacion desde cualquier parte del codigo:
+
+- **$_GET**: Se envian los datos a trves de la URL. 
+- **$_POST**: Se envian de forma oculta.
+- **$_REQUEST**: Es como tener POST y GET al tiempo.
+
+```php
+<script>
+    const formData = new FormData();
+    formData.append('nombre','Mr.michi');
+    formData.append('edad','14');
+
+//Enviamos una solicitud GET y POST al servidor
+//en este caso el codigo del servidor solo es:
+<?php 
+var_dump($_POST);
+var_dump($_GET);
+?>
+    fetch("server.php?color=naranja",{
+//Enviamos una solicitud POST
+        body:formData,
+        method:"POST"
+    })
+
+//Se imprime en pantalla los datos enviados a traves 
+//de JS.
+    .then(res => res.text())
+    .then(data => {
+        console.log(data);
+    })
+</script>	
+```
 
 
 	
