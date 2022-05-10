@@ -1274,4 +1274,109 @@ Existen una alternativa mas legible para imprimir texto en pantalla con **PHP**.
 $name = "Mr. Chapman";
 ?> 
 ```
-Forma tradicional `<?php echo "<b>$name</b>";?>` o podemos usar `<?= "<i>$name!</i>"?>` donde no tenemos que colocar `php` en cambio `=` y ademas no colocamos `;` al fina del `echo`.
+Forma tradicional 
+```php
+<?php echo "<b>$name</b>";?>
+```
+podemos usar 
+```php
+<?= "<i>$name!</i>"?>
+```
+donde no tenemos que colocar `php` en cambio `=` y ademas no colocamos `;` al fina del `echo`.
+	
+### Condicionales
+---
+Si queremos utilizar condicionales es aceptable utilizar la sinaxis tradicional de **PHP**. En este caso se usan `{}` y esto presimente no es legible asi que mejor usamos una alternativa.
+	
+1. **Sintaxis PHP**
+```php
+<h1>Esto es Aceptable</h1>
+<?php if (true){ ?>
+    <p>✌️</p>
+<?php } else{?>
+    <p>😥</p>
+<?php }?>	
+```
+
+2. **Alternativa**: Es una excelente option puesto que es mas legible dentro del codigo **HTML**.
+```php
+<h1>Esto es lo correcto</h1>
+<?php if(true):?>
+    <p>🚀</p>
+<?php else: ?>
+    <p>😥</p>
+<?php endif; ?>	
+```
+### Ciclos
+---
+Podemos implementar cualquier tipo de ciclo siguiendo una estructura similar a la de los condicionales donde en vez de usar `{}` usamos `:` y en vez de cerrar con `}` usamos `endwhile;`,`endfor;`,`endforeach;`
+
+```php
+<body>
+    <ul>
+    <?php 
+    $variable = ["Andres","Rob","Andrew"];
+    foreach ($variable as $value):?>
+    <li><?= "$value 🚀" ?></li>
+    <?php endforeach; ?>
+    </ul>
+</body>	
+```
+---
+### ¿Cómo pasar variables de PHP a JavaScript?
+
+**SSR**: El **servidor** ejecuta todo el codigo **PHP** y nos devuelve una plantilla para que la ejecute el navegador, puesto que el `navegador no puede ejecutar PHP`. PHP se ejecuta mientras la pagina es preprocesada en el servidor, despues de que esta en el navegador solo interactua JS. Aunque esto es posible no es recomendable a nivel de seguridad no es buena idea que PHP coloque datos a menos que se estrictamente necesario. 
+	
+```php
+<?php 
+#Creamos un arreglo de usuarios
+$user_list = array(
+    array(
+        "id" =>0,
+        "username"=>"Mr. Michi"
+    ),
+    array(
+        "id" =>1,
+        "username"=>"DanMuner"
+    ),
+    array(
+        "id" =>2,
+        "username"=>"Chapulin"
+    ),
+);
+
+#Declaracion variable
+$animal_name = "Hektivich";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto</title>
+</head>
+<body>
+
+<script>
+	
+//podemos escribir PHP aquí dentro de parse()😎
+//func de PHP json_encode() convierte un array-JSON a str
+//func de JS JSON.parse() convierte un str a JSON
+	
+let user_name = JSON.parse('<?= json_encode($user_list) ?>');
+let animal_name = "<?= $animal_name ?>";
+</script>
+</body>
+</html>	
+```
+### Evita el código espagueti
+No solo se refiere a codigo anidado sino en general al orden y la legibilidad a nivel visual. Buena practica es colocar toda la logica de **PHP** al inicio del archivo y luego abajo **HTML** con **PHP** que se imprime en pantalla.
+	
+![image](https://user-images.githubusercontent.com/60556632/167523626-194ac60b-b01d-4e6d-b69f-ca7b79d61477.png)
+
+
+	
+
+
