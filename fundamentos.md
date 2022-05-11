@@ -1602,4 +1602,4 @@ var_dump($_FILES["galeria"]);
 <label for="galeria">Carga tus Imagenes</label>
 <input type="file" multiple name="galeria[]" id="galeria"/>
 ```
-### Valida si un formulario ha sido enviado
+### Valida si un formulario ha sido enviado.
