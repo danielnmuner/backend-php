@@ -1493,6 +1493,22 @@ El usuario Daniel tiene 57 años
 */	
 ```
 
+### Envío de un formulario a través de POST
 	
+La diferencia pricipal es que **POST** no envia informacion a traves de la URL como lo hace **GET**, sin embargo, aunque la envia de forma oculta si inspeccionamos la consola del navegador podremos encontrar el informacion enviada ingresando a `network`. Respento al codigo es practicamente el mismo solo que el documento principal `index.php` utiliza el metodo **POST**
 
+```php
+<form action="./server.php" method="post">
+```
+ Lo mismo sucede con `server.php` donde `$_POST` podra ser inspeccionado facilmente. 
+```php
+<?php 
+echo "<pre>";
+var_dump($_POST);
+echo "</pre>";
+?>
+```
+Y si queremos ver la URL podremos comprobar que no hay informacion `http://127.0.0.1:8080/server.php`.
+	
+- **Important!** Debido a que la informacion no se encuentra oculta realmente; es importante no enviar informacion sensible como passwords, tarjetas de credito, a traves de este metodo. Para esto existen otras alternativas como con JS. ✌️
 
