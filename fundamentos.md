@@ -41,6 +41,7 @@
 
 ### Manejo de formularios
 - [x] [Cómo obtener una solicitud al servidor con PHP](#cómo-obtener-una-solicitud-al-servidor-con-php)
+- [x] [Envío de un formulario a través de GET](#envío-de-un-formulario-a-través-de-get) 
 
 ### Instalacion
 
@@ -1413,7 +1414,84 @@ var_dump($_GET);
     })
 </script>	
 ```
+### Envío de un formulario a través de GET
 
+El metodo por defecto es en PHP es **GET**, luego si no lo especificamos `method="get"` será **$_GET**.
+	
+1. Creamos un formulario que se conecte con `server.php` y envie informacion a traves del metodo GET. 
+	
+```php
+<body>
+<!--Creamos form con metodo GET
+indicamos el action que vendria siendo el servidor
+een realidad solo crearmos un archivo server.php-->
+    <form action="./server.php" method="get">
+<!--Creamos input es importante tener siempre
+el atributo name pues asi lo identifica el servidor
+y opcionalmente colocamos id y para relacionarlo
+en la etiqueta label for="nombre", id="nombre"-->
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre">
+        
+        <label for="nombre">Edad:</label>
+        <input type="text" name="edad" id="edad">
+<!--Creamos boton y cuando lo presionamos veremos que
+el contenido a enviar se vera en la URL es muy 
+importante que el boton sea de tipo "submit"-->
+        <button type="submit">Mandar Formulario</button>
+    </form>
+</body>	
+```
+2. Creamos nuestro archivo `server.php` donde podremos interactuar con la variable `$_GET`.
+	
+```php
+<?php 
+/*<pre> es uuna etiqueta de preformateado
+muestra los datos de forma justificada u ordenada */
+echo "<pre>";
+#Luego que presionar el boton podemos evaluar 
+#que contiene nuestra variable $_GET
+var_dump($_GET);
+
+#Si queremos podemos validar lo que se encuentra
+#en la variable $_GET
+
+$nombre = $_GET["nombre"];
+$edad = $_GET["edad"];
+
+echo "El usuario $nombre tiene $edad años";
+
+echo "</pre>";
+
+/*🙃Out:
+array(2) {
+  ["nombre"]=>
+  string(6) "Daniel"
+  ["edad"]=>
+  string(2) "57"
+}
+El usuario Daniel tiene 57 años
+*/
+?>	
+```
+
+3. Asi se ve el formulario con la informacion que estamos enviando
+![image](https://user-images.githubusercontent.com/60556632/167755537-816eb5d3-3814-4e5f-a2d9-62a01fb9d9b8.png)
+	
+4. Asi se ve la URL luego de enviar el formulario `http://127.0.0.1:8080/server.php?nombre=Daniel&edad=57`.
+	
+5. Asi se ve la salida de `server.php` luego de ejecutar `index.php`. 
+```php
+/*🙃Out:
+array(2) {
+  ["nombre"]=>
+  string(6) "Daniel"
+  ["edad"]=>
+  string(2) "57"
+}
+El usuario Daniel tiene 57 años
+*/	
+```
 
 	
 
