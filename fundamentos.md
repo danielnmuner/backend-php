@@ -1533,6 +1533,8 @@ En `server.php` usamos la variable superglobal `$_FILES`.
 echo "<pre>";
 var_dump($_FILES);
 echo "</pre>";
+$basename= $_FILES["image"]["name"];
+echo $basename;
 ?>
 ```
 Y al ejecutar nuestro codigo podremos confirmar que  `$_FILES` efectivamente es un array con la informacion de file que se cargo.  
