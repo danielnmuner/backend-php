@@ -1540,3 +1540,66 @@ echo $basename;
 Y al ejecutar nuestro codigo podremos confirmar que  `$_FILES` efectivamente es un array con la informacion de file que se cargo.  
 ![image](https://user-images.githubusercontent.com/60556632/167764988-5db81991-bfc4-4fdf-8454-f5ec990d01fe.png)
 
+### Tipos de inputs
+Como ya se menciono el atributo `name` es un identificador para el servidor y si no lo colocamos el servidor no entendera lo que estamos solitando. 
+	 
+```php
+<?php
+var_dump($_POST["nombre"]);
+?>
+<input type="text" name="nombre"/>	 
+```
+Cuado nos referimos a los **inputs** se esta hablando de lo que colocamos dentro del atributo `name` y en `type` en el caso anterior tenemos un **input** simple pero tambien se pueden tener de tipo array asi el servidor podra manipular arreglos. 
+	 
+```php	 
+<?php
+var_dump($_POST["personas"]);
+?>
+	 
+<input type="text" name="personas[]"/>
+<input type="text" name="personas[]"/>
+<input type="text" name="personas[]"/>	 
+```
+Existen inputs con arreglos asociativos:	 
+```php
+<?php
+var_dump($_POST["persona"]);
+?>
+	 
+<input type="text" name="persona[nombre]"/>
+<input type="email" name="persona[email]"/>
+<input type="text" name="persona[telefono]"/>	 
+```
+
+Existen inputs tipo checkbox:	 
+```php
+<input type="checkbox" name="list1"/>
+<input type="checkbox" name="list2"/>
+<input type="checkbox" name="list3"/> 
+```
+Existen inputs tipo radio:	 
+```php
+<?php
+var_dump($_POST["pais"]);
+?>	 
+#Value es lo que se envia al servidor y name es el indicador
+<label for="mexico">Mexico</label>
+<input type="radio" name="list1" value="Mexico" id="mexico"/>
+	 
+<label for="colombia">Colombia</label>
+<input type="radio" name="list2" value="Colombia" id="colombia"/>
+	 
+<label for="peru">Peru</label>
+<input type="radio" name="list3" value="Peru" id="peru"/> 
+```
+	 
+Existen inputs de multiples archivos, en este caso podemos enviar varias imagenes en forma de arraglos:	 
+```php
+<?php
+var_dump($_FILES["galeria"]);
+?>	
+	 
+<label for="galeria">Carga tus Imagenes</label>
+<input type="file" multiple name="galeria[]" id="galeria"/>
+```
+### Valida si un formulario ha sido enviado
