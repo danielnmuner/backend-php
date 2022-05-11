@@ -1415,7 +1415,7 @@ var_dump($_GET);
 </script>	
 ```
 ### Envío de un formulario a través de GET
-
+---
 El metodo por defecto es en PHP es **GET**, luego si no lo especificamos `method="get"` será **$_GET**.
 	
 1. Creamos un formulario que se conecte con `server.php` y envie informacion a traves del metodo GET. 
@@ -1494,7 +1494,7 @@ El usuario Daniel tiene 57 años
 ```
 
 ### Envío de un formulario a través de POST
-	
+---
 La diferencia pricipal es que **POST** no envia informacion a traves de la URL como lo hace **GET**, sin embargo, aunque la envia de forma oculta si inspeccionamos la consola del navegador podremos encontrar el informacion enviada ingresando a `network`. Respento al codigo es practicamente el mismo solo que el documento principal `index.php` utiliza el metodo **POST**
 
 ```php
@@ -1511,4 +1511,30 @@ echo "</pre>";
 Y si queremos ver la URL podremos comprobar que no hay informacion `http://127.0.0.1:8080/server.php`.
 	
 - **Important!** Debido a que la informacion no se encuentra oculta realmente; es importante no enviar informacion sensible como passwords, tarjetas de credito, a traves de este metodo. Para esto existen otras alternativas como con JS. ✌️
+
+### Envío de imágenes
+Existe una variable superglobal llamada `$_FILES` la cual nos permite enviar cualquier tipo de archivo. Cualquier archivo enviado al servidor se guar de manera temporal y se limpia cada cierto tiempo. `$_FILES` contien informacion en forma de array acerca del archivo que se esta manipulando. 
+	
+- **quick topic**: Es importante indicar el tipo de encriptado en los formularios de HTML el mas basico es `application/x-www-form-urlencoded` pero cuando nos referimos a archivos multimedia usamos `multipart/form-data`.
+
+```php
+ <form action="./server.php" method="post" enctype="multipart/form-data">
+```
+Ahora que indicamos el tipo de encriptacion solo queda indicar que el input es de tipo file:
+	 
+```php
+<label for="image">Imagen:</label>
+<input type="file" name="image" id="image">	 
+```
+En `server.php` usamos la variable superglobal `$_FILES`.
+	 
+```php
+<?php 
+echo "<pre>";
+var_dump($_FILES);
+echo "</pre>";
+?>
+```
+Y al ejecutar nuestro codigo podremos confirmar que  `$_FILES` efectivamente es un array con la informacion de file que se cargo.  
+![image](https://user-images.githubusercontent.com/60556632/167764988-5db81991-bfc4-4fdf-8454-f5ec990d01fe.png)
 
