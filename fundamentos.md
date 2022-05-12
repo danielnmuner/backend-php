@@ -42,6 +42,7 @@
 ### Manejo de formularios
 - [x] [Cómo obtener una solicitud al servidor con PHP](#cómo-obtener-una-solicitud-al-servidor-con-php)
 - [x] [Envío de un formulario a través de GET](#envío-de-un-formulario-a-través-de-get) 
+- [x] [Proyecto](#proyecto)
 
 ### Instalacion
 
@@ -1691,4 +1692,379 @@ filter_var($email, FILTER_SANITIZE_EMAIL);
 filter_var($age, FILTER_SANITIZE_NUMBER_INT);
 
 ?>	 
+```
+
+### Validando datos
+`filter_var` no solo tiene **filtros de sanetizacion** sino tambien **filtros de validacion** esto se encuentra en la [Documentacion](https://www.php.net/manual/es/filter.filters.php).
+
+```php
+<?php 
+#Validamos un tipo de dato flotante
+#El tercer paramentro es un modificado y es opcional
+
+$is_float = filter_var("This isn't a Float",
+FILTER_VALIDATE_FLOAT,FILTER_FLAG_ALLOW_THOUSAND);
+var_dump($is_float);
+#🙃Out: bool(false)
+
+$is_int = filter_var("120",FILTER_VALIDATE_INT);
+var_dump($is_int);
+#🙃Out: int(120)
+
+$is_ip = filter_var("167.0.0.9",FILTER_VALIDATE_IP);
+var_dump($is_ip);
+#🙃Out: string(9) "167.0.0.9"
+
+#La URL debe ser bien escrita ✌️
+$is_url = filter_var("platzi.com",FILTER_VALIDATE_URL);
+var_dump($is_url);
+#🙃Out: bool(false)
+
+#Asi se escribe la URL
+$is_url = filter_var("https://platzi.com",FILTER_VALIDATE_URL);
+var_dump($is_url);
+#🙃Out:"https://platzi.com"
+
+$is_email = filter_var("email@email.com",FILTER_VALIDATE_EMAIL);
+var_dump($is_email);
+#🙃Out:"email@email.com"
+?>	 
+```
+---	 
+### Proyecto
+---
+### Creando el maquetado	 
+Codigo **CSS**
+```css
+Skip to content
+platzi
+/
+php-html
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+More
+php-html/formulario-contacto/style.css
+@RetaxMaster
+RetaxMaster Clase 20 Maquetando el formulario
+ History
+ 1 contributor
+172 lines (150 sloc)  3.2 KB
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    background: #e5e5e5;
+    font-family: 'Roboto', sans-serif;
+}
+
+.alert {
+    margin-bottom: 15px;
+    padding: 20px 30px;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.alert.success {
+    background: #59e5a2;
+}
+
+.alert.danger {
+    background: #e55961;
+}
+
+form {
+    position: relative;
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 100px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+textarea {
+    min-height: 75px;
+    resize: none;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    padding: 7px;
+    outline: none;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 0 0 #fff;
+    border-radius: 5px;
+    transition: 0.2s box-shadow ease;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: 0.2s box-shadow ease;
+    -moz-transition: 0.2s box-shadow ease;
+    -ms-transition: 0.2s box-shadow ease;
+    -o-transition: 0.2s box-shadow ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    box-shadow: 0 0 0 3px rgba(151, 115, 254, 0.25);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button-container button {
+    border: none;
+    outline: none;
+    padding: 8px 20px;
+    background: #7392fe;
+    color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    -webkit-transition: 0.3s all ease;
+    -moz-transition: 0.3s all ease;
+    -ms-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+}
+
+.button-container button:hover {
+    background: #577bfb;
+}
+
+.button-container button:focus {
+    box-shadow: 0 0 0 3px rgba(115, 146, 254, 0.25);
+}
+
+form::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #7e5dde;
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+form .contact-info {
+    position: absolute;
+    top: 96%;
+    left: 50%;
+    display: flex;
+    width: calc(100% + 60px);
+    font-size: 13px;
+    background: #9773fe;
+    color: #fff;
+    border-radius: 3px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+form .contact-info .info {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    padding: 30px;
+}
+
+form, .alert {
+    min-width: 80%;
+}
+
+@media (min-width: 450px) {
+    
+    form, .alert {
+        min-width: 370px
+    }
+
+}	 
+```	
+---
+Codigo **HTML**
+---
+	 
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulario de contacto</title>
+</head>
+<body>
+
+    <?php if($status == "danger"): ?>
+    
+    <div class="alert danger">
+        <span>Surgió un problema</span>
+    </div>
+    
+    <?php endif; ?>
+    
+
+    <?php if($status == "success"): ?>
+    
+    <div class="alert success">
+        <span>¡Mensaje enviado con éxito!</span>
+    </div>
+    
+    <?php endif; ?>
+
+    <form action="./" method="POST">
+
+        <h1>¡Contáctanos!</h1>
+
+        <div class="input-group">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" id="name">
+        </div>
+
+        <div class="input-group">
+            <label for="email">Correo:</label>
+            <input type="email" name="email" id="email">
+        </div>
+
+        <div class="input-group">
+            <label for="subject">Asunto:</label>
+            <input type="text" name="subject" id="subject">
+        </div>
+
+        <div class="input-group">
+            <label for="message">Mensaje:</label>
+            <textarea name="message" id="message"></textarea>
+        </div>
+
+        <div class="button-container">
+            <button name="form" type="submit">Enviar</button>
+        </div>
+
+        <div class="contact-info">
+            
+            <div class="info">
+                <span><i class="fas fa-map-marker-alt"></i> 13 Saw Mill Circle, North Olmested.</span>
+            </div>
+
+            <div class="info">
+                <span><i class="fas fa-phone"></i> +1 123 456 7890</span>
+            </div>
+
+        </div>
+
+    </form>
+
+    <script src="https://kit.fontawesome.com/bbff992efd.js" crossorigin="anonymous"></script>
+    
+</body>
+</html>	 
+```
+![image](https://user-images.githubusercontent.com/60556632/167980083-2683c71a-ed45-4052-8ce5-e4fad05ee954.png)
+
+- Diligenciamos el formulario:
+![image](https://user-images.githubusercontent.com/60556632/167980287-0009e488-b605-4004-983f-90962663de8d.png)
+
+Codigo **PHP**
+---
+```php
+<?php
+#Creamos una funcion que valide si los campos
+#fueron diligeciados para esto usamos empty()
+function validate($name, $email, $subject, $message, $form) {
+    return !empty($name) && !empty($email) && !empty($subject) && !empty($message);
+}
+
+#Declaramos variables de estado
+$status = "";
+
+#Realizamos un isset() de todo el formulario
+if ( isset($_POST["form"]) ) {
+
+#Le pasamos los datos a la funcion a usando unpacking
+    if ( validate(...$_POST) ) {
+        
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $subject = $_POST["subject"];
+        $message = $_POST["message"];
+
+        // Mandar el correo
+#Modificamos el estado dependiendo la respuesta
+# de validate(...$_POST)
+        $status = "success";
+
+    }
+    else {
+        $status = "danger";
+    }
+   
+}
+
+?>	 
+```
+
+Esta parte se encuentra en el HTML o `index.php`, esta parte del codigo muestra un indicador de `success`.
+	 
+```php
+<?php if($status == "success"): ?>
+
+<div class="alert success">
+<span>¡Mensaje enviado con éxito!</span>
+</div>
+
+<?php endif; ?>	 
+```
+![image](https://user-images.githubusercontent.com/60556632/167981417-75142d1c-5e2c-4ec0-a773-069a2efe9b94.png)
+
+Esta parte del codigo muestra un indicador de `danger`
+	
+```php
+![image](https://user-images.githubusercontent.com/60556632/167981496-af117534-ecc4-4a30-9c4d-ff5c99342468.png)
 ```
