@@ -2066,5 +2066,20 @@ Esta parte se encuentra en el HTML o `index.php`, esta parte del codigo muestra 
 Esta parte del codigo muestra un indicador de `danger`
 	
 ```php
-![image](https://user-images.githubusercontent.com/60556632/167981496-af117534-ecc4-4a30-9c4d-ff5c99342468.png)
+<?php if($status == "danger"): ?>
+
+<div class="alert danger">
+<span>Surgió un problema</span>
+</div>
+
+<?php endif; ?>
 ```
+![image](https://user-images.githubusercontent.com/60556632/167981496-af117534-ecc4-4a30-9c4d-ff5c99342468.png)
+---
+### Integrando [PHPMailer](https://packagist.org/packages/phpmailer/phpmailer)
+- [Recomendado Composer](https://platzi.com/cursos/php-composer/) puesto que para seguir programando con **PHP** necesitamos aprender **Composer** el cual es un **manejador de paquetes** como **nmp**-JS, **homebrew**-MacOS, **apt**-Ubuntu. Este basicamente sirve para instalar librerias externas como en este caso que necesitamos `phpmailer`.
+	 
+1. Download Composer and run `Composer-Setup.exe`
+
+
+
