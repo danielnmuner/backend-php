@@ -1603,3 +1603,92 @@ var_dump($_FILES["galeria"]);
 <input type="file" multiple name="galeria[]" id="galeria"/>
 ```
 ### Valida si un formulario ha sido enviado.
+Colocamos en nuestro HTML los atributos `name` esto aplica incluso en el formulario.
+```php
+<form action="./server.php" method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre">
+    <button name="form" type="submit">Submit</button>
+</form>   	 
+En el codigo **PHP** usaremos dos funciones nuevas como lo es `empty()` y `isste()`.
+	 
+```php
+<?php
+
+#empty() permite saber si el input esta vacio.
+#empty() retorna "true" si esta vacio.
+#isset() evalua si el atributo name esta definido.
+
+
+if (isset($_POST["nombre"]) && !empty($_POST["nombre"])) {
+    echo "!Hola ".$_POST["nombre"]." !";
+}
+else {
+    echo "No mandaste nada!";
+}
+
+/*Tambien podemos colocar el atributo "name" para
+validar si el formulario fue enviado, sin embargo es
+importe usar empty() de lo contrario de enviaria vacio.
+*/
+if(isset($_POST["form"])){
+    echo "Todo el formulario fue enviado";
+}
+else{
+    echo "No se envio ningun formulario";
+}
+?>	 
+```
+### Sanitizando datos de mi formulario
+No solo basta evaluar si algo se envio o no, ademas hay que evitar que nos envien informacion no deseada. 
+	
+- Normalente dilijenciamos un formulario y optenemos una respuesa de este tipo.
+![image](https://user-images.githubusercontent.com/60556632/167972588-0176a1f2-6707-441c-bc2b-a04334dd405b.png)
+
+```php
+Array
+(
+    [nombre] => Daniel
+    [username] => Danuser
+    [correo] => daniel@gmail.com
+    [edad] => 27
+)	 
+```
+- Informacion no deseada podria se que por ejemplo que inyectaran codigo **HTML** en el formulario en vez de la informacion solicitada com ose ve a continuacion, donde este codigo modificaria nuestra estructura. 
+
+![image](https://user-images.githubusercontent.com/60556632/167973237-a7b8d446-3d1f-4d6f-a6ee-247dd76c6490.png)
+
+- **Solucion-Sanetizar🤓**
+	 
+Una de las opciones mas completas y cuya [Documentacion](https://www.php.net/manual/es/function.filter-var.php) es extensa es `filter_var` por lo cual es recomendable revisarla. 
+	 
+```php
+<?php 
+
+$name = $_POST["nombre"];
+$username = $_POST["username"];
+$email = $_POST["correo"];
+$edad = $_POST["edad"];
+
+/*Para sanetizar cada variable de nuestro 
+formulario usamos la funcion:*/
+$htmlname = htmlentities($name);
+$htmlusername = htmlentities($username);
+$htmlemail = htmlentities($email);
+$htmledad = htmlentities($edad);
+
+#Otras formas de sanetizar pueden ser las
+#las siguientes funciones:
+
+#A traves de Expresiones regulares-REGEX
+preg_replace("/\d/", "", $username);
+
+/*Funcion con constantes especializadas
+dependiento del tipo de dato del formulario
+en el ejemplo lo realizamos sobre un correo 
+y sobre numeros enteros*/
+filter_var($email, FILTER_SANITIZE_EMAIL);
+filter_var($age, FILTER_SANITIZE_NUMBER_INT);
+
+?>	 
+```
