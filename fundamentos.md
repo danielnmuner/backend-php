@@ -2078,9 +2078,119 @@ Esta parte del codigo muestra un indicador de `danger`
 ![image](https://user-images.githubusercontent.com/60556632/167981496-af117534-ecc4-4a30-9c4d-ff5c99342468.png)
 ---
 ### Integrando [PHPMailer](https://packagist.org/packages/phpmailer/phpmailer)
-- [Recomendado Composer](https://platzi.com/cursos/php-composer/) puesto que para seguir programando con **PHP** necesitamos aprender **Composer** el cual es un **manejador de paquetes** como **nmp**-JS, **homebrew**-MacOS, **apt**-Ubuntu. Este basicamente sirve para instalar librerias externas como en este caso que necesitamos `phpmailer`.
+- [Recomendado PHP Composer](https://platzi.com/cursos/php-composer/) puesto que para seguir programando con **PHP** necesitamos aprender **Composer** el cual es un **manejador de paquetes** como **npm**-JS, **homebrew**-MacOS, **apt**-Ubuntu. Este basicamente sirve para instalar librerias externas como en este caso que necesitamos `phpmailer`.
 	 
-1. Download Composer and run `Composer-Setup.exe`
+1. Download Composer - [Command-line installation](https://getcomposer.org/download/)
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"	 
+```
+2. Colocamos `composer.phar` en nuestra variable global **$PATH** asi solo usaremos la palabra `composer` desde cualquier directorio(Global install). `sudo mv composer.phar /usr/local/bin/composer`. Podemos verificar la version `➜  html composer --version` #🙃Out: `Composer version 2.3.5 2022-04-13 16:43:00`. Finalmemte instalamos **phpmailer** `composer require phpmailer/phpmailer` el cual creara las siguientes carpetas:
+	 
+```
+composer.json  composer.lock  index.php style.css  vendor	 
+```	 
+- Al revisar la documentacion de **phpmailer** nos indica que debemos tener este **codigo** para utilizar este paquete el codigo se debe pegar en `mail.php`
+	 
+```
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+```
+	 
+3. Creamos un nuevo archivo `touch mail.php` y lo enlazamos desde `index.php` esto se hace colocando dentro de **index.php** `require("mail.php");`
+
+4. En este proyecto no enviaremos emails a un provedor de correos real en cambio lo realizaremos uno de pruebas como lo es [Mailtrap](https://mailtrap.io/), debemos crear una cuenta y luego ingresamos a nuestro inbox.
+	 
+![image](https://user-images.githubusercontent.com/60556632/168111017-eba8bcdf-8f78-48a6-9e50-9e27c185e6e9.png)
+
+En la opcion de **Integrations** seleccionamos **phpmailer** y pegamos en codigo en `mail.php`. hasta este punto `mail.php` se veria asi:
+	 
+```php
+<?php 
+#Import PHPMailer classes into the global namespace
+#These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+#Load Composer's autoloader
+require 'vendor/autoload.php';
+
+function sendMail($subject,$body,$email,$name,$html=false){
+
+#Server settings
+# Use the following setting to configure PHPMailer:
+$phpmailer = new PHPMailer();#Create an instance;
+$phpmailer->isSMTP(); #Send using SMTP
+$phpmailer->Host = 'smtp.mailtrap.io'; #Set the SMTP server to send through
+$phpmailer->SMTPAuth = true; # Enable SMTP authentication
+$phpmailer->Port = 2525; # TCP port to connect to
+$phpmailer->Username = '8c3e2170f34710'; #SMTP username
+$phpmailer->Password = '97c4c3866d43a5'; #SMTP password
 
 
+#Recipients "¿who send? and ¿who receives?"🤔
+$phpmailer->setFrom('danmuner@google.com', 'Mailer');
+$phpmailer->addAddress($email,$name); #Add a recipient
 
+#Content of the email
+$phpmailer->isHTML($html);                                  //Set email format to HTML
+$phpmailer->Subject = $subject;
+$phpmailer->Body    = $body;
+
+#Send email
+$phpmailer->send();
+}
+?>
+```
+- Diligenciamos el formulario y lo enviamos
+![image](https://user-images.githubusercontent.com/60556632/168195442-7bfa82b0-7616-42de-8329-cdd81ddb24fd.png)
+![image](https://user-images.githubusercontent.com/60556632/168195503-7eed66db-a002-44f7-9d4e-527675c6bac2.png)
+	 
+- Validamos en Mailtrap
+![image](https://user-images.githubusercontent.com/60556632/168195598-36470977-cfeb-45fc-947f-c9b586da9572.png)
+
+![image](https://user-images.githubusercontent.com/60556632/168195666-e911e56b-5ad6-4b76-8e0a-d2303638de5a.png)
+
+- El uso de **Mailtrap** es de sencillamente para `mailtest` o con fines educativos puesto que no podemos realizarlo en con un servidor de correos real razon por la cual podemos colocar cualquier tipo de correo. 
+
+### Implementando el servidor de correos de Gmail
+
+1. Abrimos una cuenta de **Gmail** y selecionamos la opcion de `administrar tu cuenta de google`. 
+2. Habilitamos `verificacion en 2 pasos` nos movemos a `seguridad` y desde ahi seleccionamos `contraseñas de aplicaciones`.
+	 
+![image](https://user-images.githubusercontent.com/60556632/168196756-560461c6-b973-4cee-a15a-98d703545c00.png)
+
+Y luego de seleccionar otra le colocamos el nombre de **formulario-proyecto**
+
+![image](https://user-images.githubusercontent.com/60556632/168196869-84ae220a-3122-4d65-83b7-9a70da58ede3.png)
+
+3. Vamos a `mail.php` y modificamos el servidor de correos Mailtrap
+```php
+$phpmailer->Host = 'smtp.mailtrap.io'; #Set the SMTP server to send through
+$phpmailer->Port = 2525; # TCP port to connect to
+$phpmailer->Username = '8c3e2170f34710'; #SMTP username
+$phpmailer->Password = '97c4c3866d43a5';
+```
+Y lo reemplazamos por el servidor de correos de gmail.
+```php
+$phpmailer->Host = 'smtp.gmail.com'; #Set the SMTP server to send through
+$phpmailer->SMTPsecure = PHPMailer::ENCRYPTION_SMTPS;#Additional Line
+#Cambiamos el puerto a uno mas seguro
+$phpmailer->Port = 465; # TCP port to connect to
+
+$phpmailer->Username = 'danielnicolasmuner@gmail.com'; #SMTP username
+#Contrasena generada desde contraseñas de aplicaciones gmail
+$phpmailer->Password = 'rbuepdfwaopwmksa'; #SMTP password
+```
